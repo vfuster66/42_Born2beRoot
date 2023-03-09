@@ -15,3 +15,7 @@ se reporter au dossier "guide" qui comprend :
 * Installation
 * Configuration
 * Bonus
+
+EVALUATION
+
+* Fichier "Evaluation form" qui permet de mieux suivre car l'evaluation se fait sur le PC de la personne evaluee
