@@ -9,3 +9,9 @@ PRE-REQUIS
 
 * Attention a l'espace disponible ou mettre la VM dans le goinfre 
 
+MARCHE A SUIVRE
+
+se reporter au dossier guide qui comprend :
+* Installation
+* Configuration
+* Bonus
