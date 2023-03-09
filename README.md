@@ -11,7 +11,6 @@ PRE-REQUIS
 
 MARCHE A SUIVRE
 
-se reporter au dossier "guide" qui comprend :
 * Installation
 * Configuration
 * Bonus
