@@ -1,1 +1,86 @@
+Creating a Virtual Machine in Virtualbox
 
+    Launch VirtualBox & click New.
+    Name Born2beroot, sotre it in /sgoinfre/goinfre/Perso/your_login if at 42, or else on a large USB stick. Choose Linux & Debian.
+    1024MB memory is good.
+    Create a virtual hard disk now.
+    VDI.
+    Dynamically allocated.
+    10 to 13 GB is enough for both mandatory and bonus parts.
+    Start Born2beroot virtual machine.
+
+Installing Debian
+
+    Select Debian ISO image as startup disk.
+    When Debian starts, choose Install, not graphcal install.
+    Choose language, geographical & keyboard layout settings.
+    Hostname must be your_login42 (ex. mcombeau42).
+    Domain name leave empty.
+    Choose strong root password & confirm.
+    Create user. your_login works for username & name.
+    Choose password for new user.
+
+Partitioning disks
+
+    Choose Manual partitionning.
+    Choose sda Harddisk - SCSI (0,0,0) (sda) ...
+    Yes create partition table.
+
+We will crete 2 partitions, the first will be for an unencrypted /boot partition, the other for the encrypted logical volumes :
+
+    pri/log xxGB FREE SPACE >> Create a new partition >> 500 MB >> Primary >> Beginning >> Mount point >> /boot >> Done.
+    pri/log xxGB FREE SPACE >> Create a new partition >> max >> Logical >> Mount point >> Do not mount it >> Done.
+
+Encrypting disks
+
+    Configure encrypted volumes >> Yes.
+    Create encrypted volumes
+    Choose sda5 ONLY to encrypt. We DO NOT want to encrypt the sda /boot partition.
+    Done >> Finish >> Yes.
+    ... wait for formatting to finish...
+    Choose a strong password for disk encryption. DO NOT forget it!
+
+Logical Volume Manager (LVM)
+
+Create a volume group:
+
+    Configure the Logical Volume Manager >> Yes.
+    Create Volume Group >> LVMGroup >> /dev/mapper/sda5_crypt.
+
+Create Logical Volumes:
+
+    Create Logical Volume >> LVMGroup >> root >> 2.8G
+    Create Logical Volume >> LVMGroup >> home >> 2G
+    Create Logical Volume >> LVMGroup >> swap >> 1G
+    Create Logical Volume >> LVMGroup >> tmp >> 2G
+    Create Logical Volume >> LVMGroup >> srv >> 1.5G
+    Create Logical Volume >> LVMGroup >> var >> 2G
+    Create Logical Volume >> LVMGroup >> var-log >> 2G
+
+When done, Display configuration details to double check & Finish.
+
+Set filesystems and mount points for each logical volume:
+
+    Under "LV home", #1 xxGB >> Use as >> Ext4 >> Mount point >> /home >> Done
+    Under "LV root", #1 xxGB >> Use as >> Ext4 >> Mount point >> / >> Done
+    Under "LV swap", #1 xxGB >> Use as >> swap area >> Done
+    Under "LV srv", #1 3GB >> Use as >> Ext4 >> Mount point >> /srv >> Done
+    Under "LV tmp", #1 3GB >> Use as >> Ext4 >> Mount point >> /tmp >> Done
+    Under "LV var", #1 3GB >> Use as >> Ext4 >> Mount point >> /var >> Done
+    Under "LV var-log", #1 4GB >> Use as >> Ext4 >> Mount point >> Enter manually >> /var/log >> Done
+
+Scroll down & Finish partitioning and write changes to disk. Yes.
+Finish Installation
+
+    No, no need to scan.
+    Choose country & mirror.
+    Leave proxy field blank.
+    No, no need to participate in study.
+    Uncheck all software.
+    Yes, install GRUB >> /dev/sda
+    Continue. Installation complete! The virtual machine will now reboot. Enter encryption password and log into created user.
+
+We can verify that the install went correctly by running the following commands:
+
+$ lsblk
+$ cat /etc/os-release
