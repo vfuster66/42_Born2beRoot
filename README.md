@@ -1,6 +1,6 @@
 # Born2beRoot
 
-![125](https://user-images.githubusercontent.com/124174795/223994454-dd8ed9fe-986b-4718-a2a8-52652163a9f0.png)
+✅ Validé à 125% le 1er mars 2023
 
 PRE-REQUIS
 
